@@ -12,7 +12,7 @@ import java.util.Random;
  *  cp haikulibrary/release/haikulibrary.jar ~/AndroidStudioProjects/TweetOkashi/app/libs/haikulibrary.jar
 
  */
-public class HaikuGenerator {
+public class HaikuGeneratorByYahooAPI {
     List<Word> wordList;
 
     List<String> mPhrase5List = new ArrayList<String>();
@@ -21,7 +21,7 @@ public class HaikuGenerator {
 
     static final String CANT_GENERATE_MESSAGE = "できませんでした";
 
-    public HaikuGenerator(List<Word> words){
+    public HaikuGeneratorByYahooAPI(List<Word> words){
         this.wordList = words;
         findAllphrases();
     }
@@ -151,6 +151,8 @@ public class HaikuGenerator {
     }
 
 
+
+
     /**
      *
      * @return 俳句を生成できそうかどうか
@@ -159,7 +161,4 @@ public class HaikuGenerator {
         return mPhrase5List.size() > 0 && mPhrase7List.size() > 0;
 
     }
-
-
-
 }

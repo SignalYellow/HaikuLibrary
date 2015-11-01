@@ -19,7 +19,7 @@ public class HaikuGeneratorByYahooAPI {
     List<String> mPhrase7List = new ArrayList<String>();
     List<String> mPhrase5List_last;
 
-    static final String CANT_GENERATE_MESSAGE = "できませんでした";
+    public static final String CANT_GENERATE_MESSAGE = "できませんでした";
 
     public HaikuGeneratorByYahooAPI(List<Word> words){
         this.wordList = words;

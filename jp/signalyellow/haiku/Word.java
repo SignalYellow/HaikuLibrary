@@ -15,6 +15,9 @@ public class Word {
     }
 
     public int getReadingLength(){
+        if(pos.equals("MonthDay")){
+            return 0;
+        }
 
         int ret = 0;
 

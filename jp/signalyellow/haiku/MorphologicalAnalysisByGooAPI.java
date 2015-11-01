@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by shohei on 15/10/24.
+ *
  */
 public class MorphologicalAnalysisByGooAPI {
     private String gooId;
@@ -28,7 +29,11 @@ public class MorphologicalAnalysisByGooAPI {
     }
 
     public List<Word> analyze(String sentence)throws IOException{
-        return parseJson(post(sentence));
+        if(sentence == null || sentence.equals("")){
+            return new ArrayList<>();
+        }
+
+        return parseJson(post(removeInappropreateTexts(sentence)));
     }
 
     public List<Word> parseJson(String jsonText){
@@ -43,7 +48,6 @@ public class MorphologicalAnalysisByGooAPI {
                     JSONArray wordArray = subArray.getJSONArray(j);
                     Word w = new Word(wordArray.get(0).toString(),wordArray.get(2).toString(),wordArray.get(1).toString());
                     list.add(w);
-                    //System.out.println(w.toString());
                 }
             }
 
@@ -54,6 +58,18 @@ public class MorphologicalAnalysisByGooAPI {
         }
     }
 
+
+    public static String removeInappropreateTexts(String text){
+        return removeURLText(removeNewLine(text));
+    }
+
+    public static String removeNewLine(String text){
+        return text.replaceAll("\n","");
+    }
+
+    public static String removeURLText(String text){
+        return text.replaceAll("https?://([\\w-]+\\.)+[\\w-]+(/[0-9a-zA-Z_\\.?%&=]*)*", "");
+    }
 
     private String post(String sentence) throws IOException {
 

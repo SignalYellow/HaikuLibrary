@@ -21,6 +21,8 @@ public class HaikuGeneratorByGooAPI {
     final String ADJECTIVE = "形容詞";
     final String ADJECTIVE_STRICT = "形容詞語幹";
     final String PARTICLE = "助詞";
+    final String JUDGEMENT = "判定詞";
+    final String SLASH = "MonthDay";
 
 
     List<Word> wordList;
@@ -40,6 +42,10 @@ public class HaikuGeneratorByGooAPI {
      * wordListの中で俳句に使えそうなものを探し出しlistに保存する
      */
     private void findAllphrases(){
+        if(wordList == null || wordList.size() < 2){
+            return;
+        }
+
         for(int i=0;i<wordList.size();i++){
             Word word = wordList.get(i);
             if(!canBeFirstWord(word)){
@@ -147,7 +153,7 @@ public class HaikuGeneratorByGooAPI {
         String pos = w.pos;
 
         if(!canBeWord(w) || pos.contains(DOT) || pos.contains(PARTICLE)
-                 || pos.contains(BRACE)){
+                 || pos.contains(BRACE) || pos.contains(SLASH) || pos.contains(JUDGEMENT)){
             return false;
         }
 
@@ -170,8 +176,7 @@ public class HaikuGeneratorByGooAPI {
 
     private boolean isSkipWord(Word w){
         String pos = w.pos;
-        if(pos.contains(BRACE) || pos.contains(DOT)){
-            System.out.println(pos);
+        if(pos.contains(BRACE) || pos.contains(DOT) ){
             return true;
         }
             return false;

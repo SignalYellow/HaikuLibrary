@@ -17,7 +17,6 @@ public class HaikuGeneratorByYahooAPI {
 
     List<String> mPhrase5List = new ArrayList<String>();
     List<String> mPhrase7List = new ArrayList<String>();
-    List<String> mPhrase5List_last;
 
     public static final String CANT_GENERATE_MESSAGE = "できませんでした";
 
